@@ -1,4 +1,5 @@
 import NuevoPresupuesto from "./NuevoPresupuesto"
+import ControlPresupuesto from "./ControlPresupuesto"
 
 // eslint-disable-next-line react/prop-types
 function Header({presupuesto, setPresupuesto, isValidPresupuesto, setIsValidPresupuesto}) {
@@ -7,7 +8,9 @@ function Header({presupuesto, setPresupuesto, isValidPresupuesto, setIsValidPres
       <h1>Planificador de gastos</h1>
 
       {isValidPresupuesto ? (
-        <p>Control Presupuesto</p>
+        <ControlPresupuesto 
+        presupuesto={presupuesto}
+        />
       ) : (
         <NuevoPresupuesto 
         presupuesto={presupuesto}
