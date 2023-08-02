@@ -1,14 +1,15 @@
 import {useState} from 'react'
+import Mensaje from './Mensaje'
 import CerrarBtn from "../img/cerrar.svg"
 
 // eslint-disable-next-line react/prop-types
-function Modal({ setModal, animarModal, setAnimarModal }) {
+function Modal({ setModal, animarModal, setAnimarModal, guardarGasto }) {
+
+    const[mensaje, setMensaje] = useState('')
 
     const[nombre, setNombre] = useState('')
     const[cantidad, setCantidad] = useState('')
     const[categoria, setCategoria] = useState('')
-
-
 
     const ocultarModal = () => {
         setAnimarModal(false)
@@ -16,6 +17,22 @@ function Modal({ setModal, animarModal, setAnimarModal }) {
         setTimeout(() => {
             setModal(false)
         }, 500)
+    }
+
+    const handleSubmit = e => {
+        e.preventDefault();
+
+        // Validación
+        if([nombre, cantidad, categoria].includes('')){
+            setMensaje('Todos los campos son obligatorios')
+
+            setTimeout(() => {
+                setMensaje('')
+            }, 3000)
+            return;
+        }
+
+        guardarGasto({nombre, cantidad, categoria})
     }
 
   return (
@@ -28,8 +45,14 @@ function Modal({ setModal, animarModal, setAnimarModal }) {
             />
         </div>
 
-        <form className={`formulario ${animarModal ? "animar" : "cerrar"}`}>
+        <form 
+            onSubmit={handleSubmit}
+            className={`formulario ${animarModal ? "animar" : "cerrar"}`}
+        >
+
             <legend>Nuevo Gasto</legend>
+
+            {mensaje && <Mensaje tipo="error">{mensaje}</Mensaje>}
 
             <div className="campo">
             <label htmlFor="nombre">Gasto</label>
