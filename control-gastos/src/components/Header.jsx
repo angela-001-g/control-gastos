@@ -16,6 +16,7 @@ function Header({presupuesto, setPresupuesto, isValidPresupuesto, setIsValidPres
         presupuesto={presupuesto}
         setPresupuesto={setPresupuesto}
         setIsValidPresupuesto={setIsValidPresupuesto}
+        pan="prueba"
       />
       )}
 
