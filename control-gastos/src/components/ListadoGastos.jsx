@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import Gasto from "./Gasto"
 
-function ListadoGastos({gastos}) {
+function ListadoGastos({gastos, setGastoEditar}) {
   return (
     <div className="listado-gastos contenedor">
         <h2>{gastos.length ? 'Gastos' : 'No hay gastos aún'}</h2>
@@ -11,6 +11,7 @@ function ListadoGastos({gastos}) {
             <Gasto 
                 key={gasto.id} 
                 gasto={gasto}
+                setGastoEditar={setGastoEditar}
             />
         ))}
 
