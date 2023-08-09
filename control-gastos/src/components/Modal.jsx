@@ -11,13 +11,18 @@ function Modal({ setModal, animarModal, setAnimarModal, guardarGasto, gastoEdita
     const[nombre, setNombre] = useState('')
     const[cantidad, setCantidad] = useState('')
     const[categoria, setCategoria] = useState('')
+    const[id, setId] = useState('')
+    const[fecha, setFecha] = useState('')
 
     useEffect(() => {
         if(Object.keys(gastoEditar).length > 0 ){
             setNombre(gastoEditar.nombre)
             setCantidad(gastoEditar.cantidad)
             setCategoria(gastoEditar.categoria)
+            setId(gastoEditar.id)
+            setFecha(gastoEditar.fecha)
           }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const ocultarModal = () => {
@@ -41,7 +46,7 @@ function Modal({ setModal, animarModal, setAnimarModal, guardarGasto, gastoEdita
             return;
         }
 
-        guardarGasto({nombre, cantidad, categoria})
+        guardarGasto({nombre, cantidad, categoria, id, fecha})
     }
 
   return (
@@ -59,7 +64,7 @@ function Modal({ setModal, animarModal, setAnimarModal, guardarGasto, gastoEdita
             className={`formulario ${animarModal ? "animar" : "cerrar"}`}
         >
 
-            <legend>Nuevo Gasto</legend>
+            <legend>{gastoEditar.nombre ? 'Editar Gasto' : 'Nuevo Gasto'}</legend>
 
             {mensaje && <Mensaje tipo="error">{mensaje}</Mensaje>}
 
@@ -108,7 +113,7 @@ function Modal({ setModal, animarModal, setAnimarModal, guardarGasto, gastoEdita
 
         <input 
             type="submit"
-            value="Añadir Gasto"
+            value={gastoEditar.nombre ? 'Guardar Cambios' : 'Añadir Gasto'}
         />
 
         </form>
