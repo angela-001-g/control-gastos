@@ -22,6 +22,8 @@ function App() {
 
   const[gastoEditar, setGastoEditar] = useState({})
   const[filtro, setFiltro] = useState('')
+  const[gastosFiltrados, setGastosFiltrados] = useState([])
+
   
 
   useEffect(() => {
@@ -44,8 +46,10 @@ function App() {
 
   useEffect(() => {
     if(filtro){
-      // Filtrar gastos por categoria
+      const gastosFiltrados = gastos.filter(gasto => gasto.categoria === filtro);
+      setGastosFiltrados(gastosFiltrados)
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filtro])
 
   useEffect(() => {
@@ -111,6 +115,8 @@ function App() {
             gastos={gastos}
             setGastoEditar={setGastoEditar}
             eliminarGasto={eliminarGasto}
+            gastosFiltrados={gastosFiltrados}
+            filtro={filtro}
           />
           </main>
 
