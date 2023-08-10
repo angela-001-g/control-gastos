@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+
 import Gasto from "./Gasto"
 
 function ListadoGastos({gastos, setGastoEditar, eliminarGasto}) {
